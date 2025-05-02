@@ -23,7 +23,7 @@ export default function CreateProject({ onProjectCreated }) {
     }
 
     try {
-      const res = await fetch('https://task-tracker-5bhi.vercel.app/api/projects/create', {
+      const res = await fetch('https://task-tracker-pearl-beta.vercel.app/api/projects/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export default function CreateProject({ onProjectCreated }) {
       const timer = setTimeout(() => {
         setSuccess('');
       }, 2000); // 2 seconds
-  
+
       return () => clearTimeout(timer); // Cleanup on unmount or re-trigger
     }
   }, [success]);
@@ -63,28 +63,31 @@ export default function CreateProject({ onProjectCreated }) {
     <div className="create-project">
       <h3>Create New Project</h3>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Project Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        <div className="form-row">
+          <input
+            type="text"
+            placeholder="Project Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-        <textarea
-          placeholder="Project Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
+          <textarea
+            placeholder="Project Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Creating...' : 'Create Project'}
-        </button>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Creating...' : 'Create Project'}
+          </button>
+        </div>
 
         {error && <p className="error">{error}</p>}
         {success && <p className="success">{success}</p>}
       </form>
     </div>
+
   );
 }

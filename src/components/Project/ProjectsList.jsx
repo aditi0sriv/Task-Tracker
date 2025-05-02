@@ -15,12 +15,14 @@ export default function ProjectsList() {
       const token = localStorage.getItem('token');
 
       try {
-        const res = await fetch('https://task-tracker-5bhi.vercel.app/api/projects/', {
+        const res = await fetch('https://task-tracker-pearl-beta.vercel.app/api/projects/', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
+        console.log("Response: ", res);
+        
         const data = await res.json();
 
         if (!res.ok) {
@@ -47,7 +49,7 @@ export default function ProjectsList() {
       <h3>Your Projects</h3>
       {loading && <p>Loading...</p>}
       {error && <p className="error">{error}</p>}
-      {projects.length === 0 && !loading && <p>No projects found.</p>}
+      {projects.length === 0 && !loading && <p>Create your first project!</p>}
 
       <div className="projects-grid">
         {projects.map((project) => (

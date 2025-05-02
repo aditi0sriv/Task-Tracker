@@ -8,7 +8,8 @@ html,
 }
 
 .container {
-    border: 1rem solid black;
+    border: 0.1rem solid black;
+    border-radius: 0.5rem;
     width: 30rem;
     margin: auto;
     padding: 2rem;
@@ -31,14 +32,6 @@ h2 {
     border-radius: 0.5rem;
 }
 
-.credentials input[type="email"] {
-    /* background-color: #f9f9f9; */
-}
-
-.credentials input[type="password"] {
-    /* background-color: #f0f0ff; */
-}
-
 form {
     display: flex;
     flex-direction: column;
@@ -53,6 +46,22 @@ button {
     border-radius: 0.5rem;
     width: 6rem;
 }
+
+button:hover {
+    cursor: pointer;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    margin-left: 0.2rem;
+    transition: text-decoration 0.2s ease;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
 
 .error {
     color: red;

@@ -1,0 +1,64 @@
+.create-task {
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    max-width: 800px;
+}
+
+.create-task h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.form-top-row,
+.select-status {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-top-row input,
+.form-top-row textarea,
+.select-status select {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 40px;
+}
+
+.select-status button {
+    padding: 0.75rem 1.5rem;
+    background-color: #007bff;
+    /* Bootstrap blue */
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.select-status button:hover {
+    background-color: #0056b3;
+}
+
+
+.task-list-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 1rem;
+    padding-right: 8px;
+    background-color: #fff;
+}

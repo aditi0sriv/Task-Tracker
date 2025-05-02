@@ -39,7 +39,7 @@ export default function Login() {
       setLoading(true)
       setError('')
 
-      const res = await fetch('https://task-tracker-5bhi.vercel.app/api/users/login', {
+      const res = await fetch('https://task-tracker-pearl-beta.vercel.app/api/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -51,11 +51,10 @@ export default function Login() {
         throw new Error(data.message || 'Login failed.')
       }
 
-      // Save token (optional for now, useful for auth-protected routes)
       localStorage.setItem('token', data.token)
 
       // Redirect to landing page
-      navigate('/')
+      navigate('/Landing')
 
     } catch (err) {
       setError(err.message)
@@ -67,6 +66,7 @@ export default function Login() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} noValidate>
+        <h1>Task Tracker</h1>
         <h2>Login</h2>
 
         <div className="credentials">
@@ -94,7 +94,11 @@ export default function Login() {
         </button>
 
         <p>
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          Don't have an account? 
+          <Link 
+            className='link'
+            to="/signup"
+          >Sign up</Link>
         </p>
       </form>
     </div>

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import '../Tasks/TaskManager.css';
+import TaskList from './TaskList.jsx';
 
 export default function TaskManager({ projectId }) {
     const [tasks, setTasks] = useState([]);
@@ -23,7 +25,7 @@ export default function TaskManager({ projectId }) {
 
     const fetchTasks = async () => {
         try {
-            const res = await fetch(`https://task-tracker-5bhi.vercel.app/api/projects/${projectId}/tasks/`, {
+            const res = await fetch(`https://task-tracker-pearl-beta.vercel.app/api/projects/${projectId}/tasks/`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             if (!res.ok) throw new Error('Failed to fetch tasks');
@@ -50,7 +52,7 @@ export default function TaskManager({ projectId }) {
         setError('');
         setSuccess('');
         try {
-            const res = await fetch(`https://task-tracker-5bhi.vercel.app/api/projects/${projectId}/tasks/create`, {
+            const res = await fetch(`https://task-tracker-pearl-beta.vercel.app/api/projects/${projectId}/tasks/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,7 +82,7 @@ export default function TaskManager({ projectId }) {
         setError('');
         setSuccess('');
         try {
-            const res = await fetch(`https://task-tracker-5bhi.vercel.app/api/projects/${projectId}/tasks/${editingTaskId}`, {
+            const res = await fetch(`https://task-tracker-pearl-beta.vercel.app/api/projects/${projectId}/tasks/${editingTaskId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -113,7 +115,7 @@ export default function TaskManager({ projectId }) {
         setError('');
         setSuccess('');
         try {
-            const res = await fetch(`https://task-tracker-5bhi.vercel.app/api/projects/${projectId}/tasks/${taskId}`, {
+            const res = await fetch(`https://task-tracker-pearl-beta.vercel.app/api/projects/${projectId}/tasks/${taskId}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -133,72 +135,130 @@ export default function TaskManager({ projectId }) {
     };
 
     return (
-        <div>
+        <div className='create-task'>
             <h3>Create a New Task</h3>
             <form onSubmit={handleCreateTask}>
-                <input
-                    type="text"
-                    placeholder="Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                /><br />
-                <textarea
-                    placeholder="Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    required
-                /><br />
-                <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                    {statusOptions.map(opt => (
-                        <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                </select><br />
-                <button type="submit">Create Task</button>
+                <div className="form-top-row">
+                    <input
+                        type="text"
+                        placeholder="Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
+                    <textarea
+                        placeholder="Description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className='select-status'>
+                    <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                        {statusOptions.map(opt => (
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                    </select>
+
+                    <button type="submit">Create Task</button>
+                </div>
+
             </form>
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {success && <p style={{ color: 'green' }}>{success}</p>}
 
-            <h3>Tasks</h3>
+            {/* <h3>Tasks</h3>
             {tasks.length === 0 ? (
                 <p>No tasks yet. Create a new task to get started!</p>
             ) : (
-                tasks.map((task) =>
-                    editingTaskId === task._id ? (
-                        <div key={task._id} style={{ border: '1px solid #ccc', marginBottom: '1rem', padding: '0.5rem' }}>
-                            <form onSubmit={handleUpdateTask}>
-                                <input
-                                    type="text"
-                                    value={editTitle}
-                                    onChange={(e) => setEditTitle(e.target.value)}
-                                    required
-                                /><br />
-                                <textarea
-                                    value={editDescription}
-                                    onChange={(e) => setEditDescription(e.target.value)}
-                                    required
-                                /><br />
-                                <select value={editStatus} onChange={(e) => setEditStatus(e.target.value)}>
-                                    {statusOptions.map(opt => (
-                                        <option key={opt.value} value={opt.value}>{opt.label}</option>
-                                    ))}
-                                </select><br />
-                                <button type="submit">Save</button>
-                                <button type="button" onClick={() => setEditingTaskId(null)}>Cancel</button>
-                            </form>
-                        </div>
-                    ) : (
-                        <div key={task._id} style={{ border: '1px solid #ccc', marginBottom: '1rem', padding: '0.5rem' }}>
-                            <h4>{task.title}</h4>
-                            <p>{task.description}</p>
-                            <p>Status: {task.status}</p>
-                            <button onClick={() => startEditing(task)}>Edit</button>
-                            <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
-                        </div>
-                    )
-                )
-            )}
+                <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+                    {tasks.map((task) =>
+                        editingTaskId === task._id ? (
+                            <div
+                                key={task._id}
+                                style={{
+                                    border: '1px solid #ccc',
+                                    marginBottom: '0.5rem',
+                                    padding: '0.25rem 0.5rem',
+                                    fontSize: '0.9rem',
+                                    lineHeight: '1.2'
+                                }}
+                            >
+                                <form onSubmit={handleUpdateTask}>
+                                    <input
+                                        type="text"
+                                        value={editTitle}
+                                        onChange={(e) => setEditTitle(e.target.value)}
+                                        required
+                                        style={{ marginBottom: '0.25rem', width: '100%' }}
+                                    />
+                                    <textarea
+                                        value={editDescription}
+                                        onChange={(e) => setEditDescription(e.target.value)}
+                                        required
+                                        style={{ marginBottom: '0.25rem', width: '100%' }}
+                                    />
+                                    <select
+                                        value={editStatus}
+                                        onChange={(e) => setEditStatus(e.target.value)}
+                                        style={{ marginBottom: '0.25rem', width: '100%' }}
+                                    >
+                                        {statusOptions.map(opt => (
+                                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                        ))}
+                                    </select>
+                                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem' }}>
+                                        <button type="submit">Save</button>
+                                        <button type="button" onClick={() => setEditingTaskId(null)}>Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        ) : (
+                            <div
+                                key={task._id}
+                                style={{
+                                    border: '1px solid #ccc',
+                                    marginBottom: '0.5rem',
+                                    padding: '0.25rem 0.5rem',
+                                    fontSize: '0.9rem',
+                                    lineHeight: '1.2'
+                                }}
+                            >
+                                <h4 style={{ margin: '0.25rem 0' }}>{task.title}</h4>
+                                <p style={{ margin: '0.25rem 0' }}>{task.description}</p>
+                                <p style={{ margin: '0.25rem 0' }}>Status: {task.status}</p>
+                                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                                    <button onClick={() => startEditing(task)}>Edit</button>
+                                    <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
+                                </div>
+                            </div>
+                        )
+                    )}
+                </div>
+            )} */}
+
+
+            <h3>Tasks</h3>
+            <div className="task-list-wrapper">
+                <TaskList
+                    tasks={tasks}
+                    editingTaskId={editingTaskId}
+                    editTitle={editTitle}
+                    editDescription={editDescription}
+                    editStatus={editStatus}
+                    statusOptions={statusOptions}
+                    handleUpdateTask={handleUpdateTask}
+                    startEditing={startEditing}
+                    setEditingTaskId={setEditingTaskId}
+                    setEditTitle={setEditTitle}
+                    setEditDescription={setEditDescription}
+                    setEditStatus={setEditStatus}
+                    handleDeleteTask={handleDeleteTask}
+                />
+            </div>
+
 
         </div>
     );

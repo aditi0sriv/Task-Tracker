@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreateProject from '../components/Project/CreateProject.jsx';
 import ProjectsList from '../components/Project/ProjectsList.jsx';
+import '../pages/Landing.css';
 
 export default function Landing() {
   const navigate = useNavigate();

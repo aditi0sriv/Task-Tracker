@@ -40,8 +40,8 @@ export default function Signup() {
     try {
       setLoading(true)
       setError('')
-      
-      const res = await fetch('https://task-tracker-5bhi.vercel.app/api/users/', {
+
+      const res = await fetch('https://task-tracker-pearl-beta.vercel.app/api/users/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -53,9 +53,11 @@ export default function Signup() {
         throw new Error(data.message || 'Signup failed.')
       }
 
+      localStorage.setItem('token', data.token)
+
       // Success - navigate to login or dashboard
       console.log('Signup successful:', data)
-      navigate('/')
+      navigate('/Landing')
 
     } catch (err) {
       setError(err.message)
@@ -67,46 +69,56 @@ export default function Signup() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} noValidate>
+        <h1>Task Tracker</h1>
         <h2>Sign Up</h2>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="country"
-          placeholder="Country"
-          value={formData.country}
-          onChange={handleChange}
-        />
-
+  
+        <div className="credentials">
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="country"
+            placeholder="Country"
+            value={formData.country}
+            onChange={handleChange}
+          />
+        </div>
+  
         {error && <p className="error">{error}</p>}
-
+  
         <button type="submit" disabled={loading}>
           {loading ? 'Signing Up...' : 'Sign Up'}
         </button>
-
+  
         <p>
-          Already have an account? <Link to="/login">Log in</Link>
+          Already have an account?
+          <Link
+            className='link'
+            to="/login"
+          >
+            Log in
+          </Link>
         </p>
       </form>
     </div>
-  )
+  )  
 }
