@@ -41,7 +41,7 @@ export default function Signup() {
       setLoading(true)
       setError('')
 
-      const res = await fetch('https://task-tracker-pearl-beta.vercel.app/api/users/', {
+      const res = await fetch('https://task-tracker-backend-plum.vercel.app/api/users/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

@@ -15,7 +15,7 @@ export default function ProjectsList() {
       const token = localStorage.getItem('token');
 
       try {
-        const res = await fetch('https://task-tracker-pearl-beta.vercel.app/api/projects/', {
+        const res = await fetch('https://task-tracker-backend-plum.vercel.app/api/projects/', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

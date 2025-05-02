@@ -23,7 +23,7 @@ export default function CreateProject({ onProjectCreated }) {
     }
 
     try {
-      const res = await fetch('https://task-tracker-pearl-beta.vercel.app/api/projects/create', {
+      const res = await fetch('https://task-tracker-backend-plum.vercel.app/api/projects/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

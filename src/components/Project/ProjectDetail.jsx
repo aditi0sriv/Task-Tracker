@@ -16,7 +16,7 @@ export default function ProjectDetail() {
     const fetchProjectData = async () => {
       try {
         // Fetch project details
-        const projectRes = await fetch(`https://task-tracker-pearl-beta.vercel.app/api/projects/${projectId}`, {
+        const projectRes = await fetch(`https://task-tracker-backend-plum.vercel.app/api/projects/${projectId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
