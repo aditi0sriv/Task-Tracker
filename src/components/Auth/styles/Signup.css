@@ -1,0 +1,13 @@
+.container {
+    border: 1rem solid black;
+    width: fit-content;
+    margin: auto;
+    padding: 2rem;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }  

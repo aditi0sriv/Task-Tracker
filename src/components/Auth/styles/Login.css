@@ -1,0 +1,69 @@
+/* Login.css */
+
+body,
+html,
+#root {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    border: 1rem solid black;
+    width: 30rem;
+    margin: auto;
+    padding: 2rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+    /* border: 0.3rem solid black; */
+    margin-bottom: 0.4rem;
+}
+
+.credentials input {
+    padding: 0.7rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.credentials input[type="email"] {
+    /* background-color: #f9f9f9; */
+}
+
+.credentials input[type="password"] {
+    /* background-color: #f0f0ff; */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    display: block;
+    margin: 1rem auto 0 auto;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    width: 6rem;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+/* Use Flexbox to center the container */
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
