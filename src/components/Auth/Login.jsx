@@ -39,7 +39,7 @@ export default function Login() {
       setLoading(true)
       setError('')
 
-      const res = await fetch('http://localhost:5000/api/users/login', {
+      const res = await fetch('https://task-tracker-5bhi.vercel.app/api/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

@@ -15,7 +15,7 @@ export default function ProjectsList() {
       const token = localStorage.getItem('token');
 
       try {
-        const res = await fetch('http://localhost:5000/api/projects/', {
+        const res = await fetch('https://task-tracker-5bhi.vercel.app/api/projects/', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

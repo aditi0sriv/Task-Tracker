@@ -23,7 +23,7 @@ export default function TaskManager({ projectId }) {
 
     const fetchTasks = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/projects/${projectId}/tasks/`, {
+            const res = await fetch(`https://task-tracker-5bhi.vercel.app/api/projects/${projectId}/tasks/`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             if (!res.ok) throw new Error('Failed to fetch tasks');
@@ -50,7 +50,7 @@ export default function TaskManager({ projectId }) {
         setError('');
         setSuccess('');
         try {
-            const res = await fetch(`http://localhost:5000/api/projects/${projectId}/tasks/create`, {
+            const res = await fetch(`https://task-tracker-5bhi.vercel.app/api/projects/${projectId}/tasks/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function TaskManager({ projectId }) {
         setError('');
         setSuccess('');
         try {
-            const res = await fetch(`http://localhost:5000/api/projects/${projectId}/tasks/${editingTaskId}`, {
+            const res = await fetch(`https://task-tracker-5bhi.vercel.app/api/projects/${projectId}/tasks/${editingTaskId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ export default function TaskManager({ projectId }) {
         setError('');
         setSuccess('');
         try {
-            const res = await fetch(`http://localhost:5000/api/projects/${projectId}/tasks/${taskId}`, {
+            const res = await fetch(`https://task-tracker-5bhi.vercel.app/api/projects/${projectId}/tasks/${taskId}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`,
