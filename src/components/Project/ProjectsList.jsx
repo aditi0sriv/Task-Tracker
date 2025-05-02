@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../Project/Projectslist.css';
+import '../Project/ProjectsList.css';
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState([]);
